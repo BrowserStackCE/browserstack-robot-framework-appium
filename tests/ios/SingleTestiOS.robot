@@ -15,5 +15,5 @@ Test Wiki app
 
 *** Keywords ***
 Open app
-    open application    app=${APP_ID}   remote_url=${REMOTE_URL}    device=iPhone XS   name=test   build=browserstack-robot-framework
+    open application    app=${APP_ID}   remote_url=${REMOTE_URL}    device=iPhone XS   name=single_test   build=browserstack-robot-framework
     IMPLICIT WAIT    5

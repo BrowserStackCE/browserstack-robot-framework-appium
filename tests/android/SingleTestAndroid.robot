@@ -14,5 +14,5 @@ Test Wiki app
 
 *** Keywords ***
 Open app
-    open application    app=${APP_ID}   remote_url=${REMOTE_URL}    device=Samsung Galaxy S22   name=test   build=browserstack-robot-framework
+    open application    app=${APP_ID}   remote_url=${REMOTE_URL}    device=Samsung Galaxy S22   name=single_test   build=browserstack-robot-framework
     IMPLICIT WAIT    5
