@@ -6,7 +6,7 @@
 * Clone the repo
 * Install dependencies  
   * `pip install robotframework==3.2.2`
-  * `pip install robotframework-appiumlibrary==1.5`
+  * `pip install --upgrade robotframework-appiumlibrary`
   * `pip install robotframework-pabot`
   * `pip install browserstack-local`
 
