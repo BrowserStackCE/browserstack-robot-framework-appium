@@ -9,6 +9,13 @@
   * `pip install --upgrade robotframework-appiumlibrary`
   * `pip install robotframework-pabot`
   * `pip install browserstack-local`
+* Upload your Android or iOS App
+<br/>Upload your Android app (.apk or .aab file) or iOS app (.ipa file) to BrowserStack servers using our REST API. Here is an example cURL request :
+    ```
+    curl -u "BROWSERSTACK_USERNAME:BROWSERSTACK_ACCESS_KEY" \
+    -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
+    -F "file=@/path/to/apk/file"
+    ```
 
 ## Set BrowserStack Credentials 
 * You can export the environment variables for the Username and Access Key of your BrowserStack account. 
