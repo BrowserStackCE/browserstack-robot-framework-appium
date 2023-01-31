@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "@percy/appium-app": "^0.0.7",
+    "@percy/cli": "^1.17.0"
+  }
+}

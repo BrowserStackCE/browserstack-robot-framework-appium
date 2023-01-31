@@ -1,0 +1,8 @@
+robotframework
+robotframework-seleniumlibrary==5.1.3
+robotframework-pabot
+browserstack-local
+selenium==3.141.0
+robotframework-appiumlibrary
+appium-python-client
+percy-appium-app

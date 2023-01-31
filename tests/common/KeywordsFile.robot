@@ -3,6 +3,7 @@ Library    AppiumLibrary
 Library    implicit-wait.py
 Library    mark-test-status.py
 Library    manage-local-testing.py
+Library    percy-snapshot.py
 
 *** Variables ***
 ${USERNAME}=     %{BROWSERSTACK_USERNAME}
@@ -28,6 +29,10 @@ Start Local testing
 
 Stop Local testing
     STOP LOCAL
+
+Capture Percy screenshot
+    [Arguments]    ${name}
+    PERCY SNAPSHOT   ${name}
 
 #Android test keywords
 Search for keyword in wiki app

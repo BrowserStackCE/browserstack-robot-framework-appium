@@ -9,6 +9,7 @@ ${APP_ID}=     %{BROWSERSTACK_APP_ID}   #hashed id value can be hard coded here 
 Test Wiki app
     Open app
     Search for keyword in wiki app
+    Capture Percy screenshot    Snapshot_Title
     Validate wiki test
     Close app
 

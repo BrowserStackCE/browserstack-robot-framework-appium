@@ -1,18 +1,15 @@
-# BrowserStack Integration with Robot Framework Appium (Python)
+# App Percy Integration with Robot Framework Appium (Python) on BrowserStack
 
 ![BrowserStack Logo](https://d98b8t1nnulk5.cloudfront.net/production/images/layout/logo-header.png?1469004780) 
 
 ## Setup
 * Clone the repo
 * Install dependencies  
-  * `pip install robotframework==3.2.2`
-  * `pip install --upgrade robotframework-appiumlibrary`
-  * `pip install robotframework-pabot`
-  * `pip install browserstack-local`
+  * `pip install -r requirements.txt`
 * Upload your Android or iOS App
 <br/>Upload your Android app (.apk or .aab file) or iOS app (.ipa file) to BrowserStack servers using our REST API. Here is an example cURL request :
     ```
-    curl -u "BROWSERSTACK_USERNAME:BROWSERSTACK_ACCESS_KEY" \
+    curl -u "$BROWSERSTACK_USERNAME:$BROWSERSTACK_ACCESS_KEY" \
     -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
     -F "file=@/path/to/apk/file"
     ```
@@ -27,6 +24,14 @@
   ```
 
 ## Running tests
+### App Percy
+* Run `pip install percy-appium-app
+* Run `npm install --save-dev @percy/cli @percy/appium-app
+* Create a project in Percy.io and Export PERCY_TOKEN to environment variable
+
+* [App Percy- Getting Started](https://docs.percy.io/v2-app/docs/appium-for-python-1)
+* To run Percy Snapshot for SingleTestAndroid tests, run `npx percy app:exec -- python3 -m robot tests/android/SingleTestAndroid.robot`
+
 ### Android
 * To run single test, run `robot tests/android/SingleTestAndroid.robot`
 * To run local tests, run `robot tests/android/LocalTestAndroid.robot`
