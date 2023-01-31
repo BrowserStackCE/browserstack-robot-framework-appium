@@ -25,8 +25,8 @@
 
 ## Running tests
 ### App Percy
-* Run `pip install percy-appium-app
-* Run `npm install --save-dev @percy/cli @percy/appium-app
+* Run `pip install percy-appium-app`
+* Run `npm install --save-dev @percy/cli @percy/appium-app`
 * Create a project in Percy.io and Export PERCY_TOKEN to environment variable
 
 * [App Percy- Getting Started](https://docs.percy.io/v2-app/docs/appium-for-python-1)
