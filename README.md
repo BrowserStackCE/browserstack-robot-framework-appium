@@ -28,18 +28,26 @@
 
 ## Running tests
 ### Android
-* To run single test, run `robot tests/android/SingleTestAndroid.robot`
-* To run local tests, run `robot tests/android/LocalTestAndroid.robot`
-* To run parallel tests we will be using the [Pabot](https://pabot.org/) library, 
-  1. Test Suite level
-     * Run - `pabot --processes <count_of_parallels> tests/android/parallel/*.robot`
-     * Alternate method: `pabot --processes <count_of_parallels> <name_of_suites_to_run>`
-         <br/>Eg: `pabot --processes 2 Suite1.robot Suite2.robot`
-  2. Test case level
-     * Run - `pabot --testlevelsplit <file_name>` <br/>Eg:  `pabot --testlevelsplit Suite1.robot`
-  3. Run Test cases and Test suites together in parallel
-     * Run - `pabot --testlevelsplit --processes <count_of_parallels> *.robot`
-     <br/>**Note: If the process count exceeds the parallel thread limit, it will automatically get queued. No changes required in the scripts.**
+* To run single test, run 
+   ```
+   browserstack-sdk robot tests/android/SingleTestAndroid.robot --browserstack.config tests/android/config/browserstack-single.yml
+   ```
+* To run local tests, run 
+   ```
+   browserstack-sdk robot tests/android/SingleTestAndroid.robot --browserstack.config tests/android/config/browserstack-single.yml
+   ```
+* To run test suites in parallel
+   ```
+   browserstack-sdk robot tests/android/*.robot --browserstack.config tests/android/config/browserstack-parallel.yml
+   ```
+* To run Test case level parallel tests we will be using the [Pabot](https://pabot.org/) library, 
+   ```
+   browserstack-sdk pabot --testlevelsplit ./tests/android/ParallelTestAndroid.robot --browserstack.config tests/android/config/browserstack-parallel.yml  
+   ```
+* To run Test cases and Test suites together in parallel we will also be using the [Pabot](https://pabot.org/) library
+   ```
+   browserstack-sdk pabot --testlevelsplit ./tests/android/*.robot --browserstack.config tests/android/config/browserstack-parallel.yml  
+   ```
      
 ### iOS
 * To run single test, run `robot tests/iOS/SingleTestiOS.robot`

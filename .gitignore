@@ -7,3 +7,5 @@ output.xml
 report.html
 *.png
 .DS_Store
+.pabotsuitenames
+__pycache__

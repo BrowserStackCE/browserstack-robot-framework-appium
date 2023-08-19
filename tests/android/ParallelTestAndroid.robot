@@ -9,6 +9,10 @@ Test Teardown   Close app
 Test Wiki app
     Search for keyword browserstack in wiki app
     Validate search test
+    
+Test Wiki app
+    Search for keyword google in wiki app
+    Validate search test
 
 *** Keywords ***
 Open app

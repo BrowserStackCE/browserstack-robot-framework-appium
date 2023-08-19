@@ -2,13 +2,6 @@
 Library    AppiumLibrary
 Library    implicit-wait.py
 Library    mark-test-status.py
-Library    manage-local-testing.py
-
-*** Variables ***
-${USERNAME}=     %{BROWSERSTACK_USERNAME}
-${ACCESSKEY}=    %{BROWSERSTACK_ACCESS_KEY}
-${REMOTE_URL}=  https://${USERNAME}:${ACCESSKEY}@hub-cloud.browserstack.com/wd/hub
-
 
 *** Keywords ***
 #Common test keywords
@@ -19,26 +12,20 @@ Add Implicit Wait
     [Arguments]    ${duration}
     IMPLICIT WAIT   ${duration}
 
-Mark Test Status
-    [Arguments]    ${status}    ${reason}
-    TEST STATUS    ${status}    ${reason}
-
-Start Local testing
-    START LOCAL
-
-Stop Local testing
-    STOP LOCAL
-
 #Android test keywords
-Search for keyword in wiki app
+Search for keyword browserstack in wiki app
     click element    id=org.wikipedia.alpha:id/search_container
     click element    id=org.wikipedia.alpha:id/search_src_text
     input text  id=org.wikipedia.alpha:id/search_src_text  BrowserStack
 
-Validate wiki test
+Search for keyword google in wiki app
+    click element    id=org.wikipedia.alpha:id/search_container
+    click element    id=org.wikipedia.alpha:id/search_src_text
+    input text  id=org.wikipedia.alpha:id/search_src_text  Google
+
+Validate search test
     ${length}=      get length    xpath=//android.widget.TextView
-    run keyword and return if    ${length}>0    mark test status    passed  Test results have been validated.
-    run keyword and return    mark test status    failed    Something went wrong!
+    Should Be True     ${length}>0
 
 #iOS test keywords
 Click on Text Button
@@ -50,6 +37,5 @@ Enter Text
 
 Validate result
     ${output}=  get text    id=Text Output
-    run keyword and return if    "${output}"=="hello@browserstack "  mark test status    passed  Test results have been validated!
-    run keyword and return    mark test status    failed  Something went wrong!
+    Should Be True    "${output}"=="hello@browserstack "
 
