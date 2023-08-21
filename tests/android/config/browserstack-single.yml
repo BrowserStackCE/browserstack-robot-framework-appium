@@ -1,7 +1,7 @@
 userName: YOUR_USERNAME
 accessKey: YOUR_ACCESS_KEY
 framework: robot
-app: apps\WikipediaSample.apk
+app: apps/WikipediaSample.apk
 platforms:
   - platformName: android
     deviceName: Samsung Galaxy S22 Ultra

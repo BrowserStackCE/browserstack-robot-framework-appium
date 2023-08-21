@@ -5,10 +5,14 @@ Test Setup  Open app
 Test Teardown   Close app
 
 *** Test Cases ***
-Test Wiki app
+Test Sample app 1
     click on text button
     enter text 1
     validate result 1
+Test Sample app 2
+    click on text button
+    enter text 2
+    validate result 2
 
 *** Keywords ***
 Open app

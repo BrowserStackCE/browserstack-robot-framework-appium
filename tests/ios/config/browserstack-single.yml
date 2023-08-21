@@ -1,14 +1,14 @@
 userName: YOUR_USERNAME
 accessKey: YOUR_ACCESS_KEY
 framework: robot
-app: apps/WikipediaSample.apk
+app: apps/BStackSampleApp.ipa
 platforms:
-  - platformName: android
-    deviceName: Samsung Galaxy S22 Ultra
-    platformVersion: 12.0
-parallelsPerPlatform: 5 
+  - platformName: ios
+    deviceName: iPhone XS
+    platformVersion: 15
+parallelsPerPlatform: 1 
 browserstackLocal: false
-buildName: BrowserStack Demo Parallel
+buildName: BrowserStack Demo Single
 projectName: BrowserStack Sample
 buildIdentifier: ${BUILD_NUMBER}
 debug: true

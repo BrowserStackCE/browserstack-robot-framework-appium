@@ -5,8 +5,6 @@ Library    String
 Test Setup  Open app
 Test Teardown   Close app
 
-*** Variables ***
-
 *** Test Cases ***
 Test Local app
     Handle popup

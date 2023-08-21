@@ -9,3 +9,4 @@ report.html
 .DS_Store
 .pabotsuitenames
 __pycache__
+browserstack.err

@@ -1,7 +1,6 @@
 *** Settings ***
 Library    AppiumLibrary
 Library    implicit-wait.py
-Library    mark-test-status.py
 
 *** Keywords ***
 #Common test keywords
@@ -31,11 +30,19 @@ Validate search test
 Click on Text Button
     Click Element    id=Text Button
 
-Enter Text
+Enter Text 1
     Click Element    id=Text Input
     Input Text    id=Text Input    hello@browserstack \n
 
-Validate result
+Enter Text 2
+    Click Element    id=Text Input
+    Input Text    id=Text Input    demo@browserstack \n
+
+Validate result 1
     ${output}=  get text    id=Text Output
     Should Be True    "${output}"=="hello@browserstack "
+
+Validate result 2
+    ${output}=  get text    id=Text Output
+    Should Be True    "${output}"=="demo@browserstack "
 
