@@ -6,11 +6,11 @@ Test Setup  Open app
 Test Teardown   Close app
 
 *** Test Cases ***
-Test Wiki app
+Test Wiki app keyword BrowserStack
     Search for keyword browserstack in wiki app
     Validate search test
     
-Test Wiki app
+Test Wiki app keyword Google
     Search for keyword google in wiki app
     Validate search test
 
