@@ -5,7 +5,7 @@
 ## Setup
 * Clone the repo
 * Install dependencies  
-  * `pip install robotframework==3.2.2`
+  * `pip install robotframework`
   * `pip install --upgrade robotframework-appiumlibrary`
   * `pip install robotframework-pabot`
   * `pip install browserstack-sdk`
@@ -17,9 +17,10 @@
     -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
     -F "file=@/path/to/apk/file"
     ```
+The generated app_url is a unique ID used to identify the uploaded app build. You can add that to the config .yml file or directly set the path to the application in the config file under the app key. 
 
 ## Set BrowserStack Credentials 
-* You can export the environment variables for the Username and Access Key of your BrowserStack account or you can set it in the config files. 
+* You can export the environment variables for the Username and Access Key of your BrowserStack account or you can set it in the config file. 
 
   ```
   export BROWSERSTACK_USERNAME=<browserstack-username> &&
