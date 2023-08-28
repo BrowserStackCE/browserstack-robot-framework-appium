@@ -4,6 +4,12 @@
 
 ## Setup
 * Clone the repo
+* Create a virtual environment 
+   ```
+   pip install virtualenv
+   virtualenv env
+   source env/bin/activate
+   ```
 * Install dependencies  
   * `pip install robotframework`
   * `pip install --upgrade robotframework-appiumlibrary`
