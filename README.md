@@ -6,15 +6,11 @@
 * Clone the repo
 * Create a virtual environment 
    ```
-   pip install virtualenv
-   virtualenv env
+   python3 -m venv env
    source env/bin/activate
    ```
 * Install dependencies  
-  * `pip install robotframework`
-  * `pip install --upgrade robotframework-appiumlibrary`
-  * `pip install robotframework-pabot`
-  * `pip install browserstack-sdk`
+  * `pip install --upgrade -r requirements.txt`
 
 * Upload your Android or iOS App
 <br/>Upload your Android app (.apk or .aab file) or iOS app (.ipa file) to BrowserStack servers using our REST API. Here is an example cURL request :
@@ -37,53 +33,53 @@ The generated app_url is a unique ID used to identify the uploaded app build. Yo
 ### Android
 * To run single test, run 
    ```
-   browserstack-sdk robot tests/android/SingleTestAndroid.robot --browserstack.config tests/android/config/browserstack-single.yml
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-single.yml" && browserstack-sdk robot tests/android/SingleTestAndroid.robot
    ```
 * To run tests on multiple devices in parallel, run 
    ```
-   browserstack-sdk robot tests/android/SingleTestAndroid.robot --browserstack.config tests/android/config/browserstack-parallel-devices.yml
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-parallel-devices.yml" && browserstack-sdk robot tests/android/SingleTestAndroid.robot
    ```
 * To run local tests, run 
    ```
-   browserstack-sdk robot tests/android/LocalTestAndroid.robot --browserstack.config tests/android/config/browserstack-local.yml
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-local.yml" && browserstack-sdk robot tests/android/LocalTestAndroid.robot
    ```
 * To run test suites in parallel
    ```
-   browserstack-sdk robot tests/android/*.robot --browserstack.config tests/android/config/browserstack-parallel.yml
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-parallel.yml" && browserstack-sdk robot tests/android/*.robot
    ```
 * To run Test case level parallel tests we will be using the [Pabot](https://pabot.org/) library, 
    ```
-   browserstack-sdk pabot --testlevelsplit ./tests/android/ParallelTestAndroid.robot --browserstack.config tests/android/config/browserstack-parallel.yml  
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-parallel.yml" && browserstack-sdk pabot --testlevelsplit ./tests/android/ParallelTestAndroid.robot
    ```
 * To run Test cases and Test suites together in parallel we will also be using the [Pabot](https://pabot.org/) library
    ```
-   browserstack-sdk pabot --testlevelsplit ./tests/android/*.robot --browserstack.config tests/android/config/browserstack-parallel.yml  
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-parallel.yml" && browserstack-sdk pabot --testlevelsplit ./tests/android/*.robot
    ```
      
 ### iOS
 * To run single test, run 
    ```
-   browserstack-sdk robot tests/ios/SingleTestiOS.robot --browserstack.config tests/ios/config/browserstack-single.yml
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-single.yml" && browserstack-sdk robot tests/ios/SingleTestiOS.robot
    ```
 * To run tests on multiple devices in parallel, run 
    ```
-   browserstack-sdk robot tests/ios/SingleTestiOS.robot --browserstack.config tests/ios/config/browserstack-parallel-devices.yml
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-parallel-devices.yml" && browserstack-sdk robot tests/ios/SingleTestiOS.robot
    ```
 * To run local tests, run 
    ```
-   browserstack-sdk robot tests/ios/LocalTestiOS.robot --browserstack.config tests/ios/config/browserstack-local.yml
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-local.yml" && browserstack-sdk robot tests/ios/LocalTestiOS.robot
    ```
 * To run test suites in parallel
    ```
-   browserstack-sdk robot tests/ios/*.robot --browserstack.config tests/ios/config/browserstack-parallel.yml
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-parallel.yml" && browserstack-sdk robot tests/ios/*.robot
    ```
 * To run Test case level parallel tests we will be using the [Pabot](https://pabot.org/) library, 
    ```
-   browserstack-sdk pabot --testlevelsplit ./tests/ios/ParallelTestiOS.robot --browserstack.config tests/ios/config/browserstack-parallel.yml  
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-parallel.yml" && browserstack-sdk pabot --testlevelsplit ./tests/ios/ParallelTestiOS.robot
    ```
 * To run Test cases and Test suites together in parallel we will also be using the [Pabot](https://pabot.org/) library
    ```
-   browserstack-sdk pabot --testlevelsplit ./tests/ios/*.robot --browserstack.config tests/ios/config/browserstack-parallel.yml  
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-parallel.yml" && browserstack-sdk pabot --testlevelsplit ./tests/ios/*.robot
    ```
 
 Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
