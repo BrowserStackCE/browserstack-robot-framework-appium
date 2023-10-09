@@ -2,22 +2,21 @@
 Library    AppiumLibrary
 Resource   ../common/KeywordsFile.robot
 Library    String
-
-*** Variables ***
-${APP_ID}=     %{BROWSERSTACK_APP_ID}
+Test Setup  Open app
+Test Teardown   Close app
 
 *** Test Cases ***
 Test Wiki app
-    Start Local testing
-    Open app
     Test connection
     Validate output
-    Close app
-    Stop Local testing
 
 *** Keywords ***
 Open app
-    open application    app=${APP_ID}   remote_url=${REMOTE_URL}    device=iPhone 12    os_version=14   name=local_test   build=browserstack-robot-framework    browserstack.local=true     autoGrantPermissions=true
+    Open Application    http://127.0.0.1:4723/wd/hub  
+    ...  automationName=XCUITest
+    ...  platformName=ios  
+    ...  platformVersion=16.0 
+    ...  app=apps/LocalSample.ipa
     IMPLICIT WAIT    5
 
 Test connection
@@ -25,5 +24,4 @@ Test connection
 
 Validate output
     ${output}=      get text    id=ResultBrowserStackLocal
-    run keyword and return if    "${output}"=="Response is: Up and running"   mark test status    passed  Test passed!
-    run keyword and return    mark test status    failed   Test failed!
+    Should Be True    "${output}"=="Response is: Up and running"

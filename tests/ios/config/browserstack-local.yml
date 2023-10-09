@@ -1,0 +1,17 @@
+userName: YOUR_USERNAME
+accessKey: YOUR_ACCESS_KEY
+framework: robot
+app: apps/LocalSample.ipa
+platforms:
+  - platformName: ios
+    deviceName: iPhone XS
+    platformVersion: 15
+parallelsPerPlatform: 1 
+browserstackLocal: true
+browserStackLocalOptions:
+  forceLocal: true
+buildName: BrowserStack Demo Local
+projectName: BrowserStack Sample
+buildIdentifier: ${BUILD_NUMBER}
+debug: true
+networkLogs: true

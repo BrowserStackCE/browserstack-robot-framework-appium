@@ -1,0 +1,21 @@
+userName: YOUR_USERNAME
+accessKey: YOUR_ACCESS_KEY
+framework: robot
+app: apps/BStackSampleApp.ipa
+platforms:
+  - platformName: ios
+    deviceName: iPhone 14 Pro Max
+    platformVersion: 16
+  - platformName: ios
+    deviceName: iPhone XS
+    platformVersion: 15
+  - platformName: ios
+    deviceName: iPhone 11
+    platformVersion: 14
+parallelsPerPlatform: 1 
+browserstackLocal: false
+buildName: BrowserStack Demo Parallel Devices
+projectName: BrowserStack Sample
+buildIdentifier: ${BUILD_NUMBER}
+debug: true
+networkLogs: true

@@ -4,11 +4,14 @@
 
 ## Setup
 * Clone the repo
+* Create a virtual environment 
+   ```
+   python3 -m venv env
+   source env/bin/activate
+   ```
 * Install dependencies  
-  * `pip install robotframework==3.2.2`
-  * `pip install --upgrade robotframework-appiumlibrary`
-  * `pip install robotframework-pabot`
-  * `pip install browserstack-local`
+  * `pip install --upgrade -r requirements.txt`
+
 * Upload your Android or iOS App
 <br/>Upload your Android app (.apk or .aab file) or iOS app (.ipa file) to BrowserStack servers using our REST API. Here is an example cURL request :
     ```
@@ -16,51 +19,74 @@
     -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
     -F "file=@/path/to/apk/file"
     ```
+The generated app_url is a unique ID used to identify the uploaded app build. You can add that to the config .yml file or directly set the path to the application in the config file under the app key. 
 
 ## Set BrowserStack Credentials 
-* You can export the environment variables for the Username and Access Key of your BrowserStack account. 
+* You can export the environment variables for the Username and Access Key of your BrowserStack account or you can set it in the config file. 
 
   ```
   export BROWSERSTACK_USERNAME=<browserstack-username> &&
-  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>&&
-  export BROWSERSTACK_APP_ID=<app-hashed-id>
+  export BROWSERSTACK_ACCESS_KEY=<browserstack-access-key>
   ```
 
 ## Running tests
 ### Android
-* To run single test, run `robot tests/android/SingleTestAndroid.robot`
-* To run local tests, run `robot tests/android/LocalTestAndroid.robot`
-* To run parallel tests we will be using the [Pabot](https://pabot.org/) library, 
-  1. Test Suite level
-     * Run - `pabot --processes <count_of_parallels> tests/android/parallel/*.robot`
-     * Alternate method: `pabot --processes <count_of_parallels> <name_of_suites_to_run>`
-         <br/>Eg: `pabot --processes 2 Suite1.robot Suite2.robot`
-  2. Test case level
-     * Run - `pabot --testlevelsplit <file_name>` <br/>Eg:  `pabot --testlevelsplit Suite1.robot`
-  3. Run Test cases and Test suites together in parallel
-     * Run - `pabot --testlevelsplit --processes <count_of_parallels> *.robot`
-     <br/>**Note: If the process count exceeds the parallel thread limit, it will automatically get queued. No changes required in the scripts.**
+* To run single test, run 
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-single.yml" && browserstack-sdk robot tests/android/SingleTestAndroid.robot
+   ```
+* To run tests on multiple devices in parallel, run 
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-parallel-devices.yml" && browserstack-sdk robot tests/android/SingleTestAndroid.robot
+   ```
+* To run local tests, run 
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-local.yml" && browserstack-sdk robot tests/android/LocalTestAndroid.robot
+   ```
+* To run test suites in parallel
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-parallel.yml" && browserstack-sdk robot tests/android/*.robot
+   ```
+* To run Test case level parallel tests we will be using the [Pabot](https://pabot.org/) library, 
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-parallel.yml" && browserstack-sdk pabot --testlevelsplit ./tests/android/ParallelTestAndroid.robot
+   ```
+* To run Test cases and Test suites together in parallel we will also be using the [Pabot](https://pabot.org/) library
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/android/config/browserstack-parallel.yml" && browserstack-sdk pabot --testlevelsplit ./tests/android/*.robot
+   ```
      
 ### iOS
-* To run single test, run `robot tests/iOS/SingleTestiOS.robot`
-* To run local tests, run `robot tests/iOS/LocalTestiOS.robot`
-* To run parallel tests we will be using the [Pabot](https://pabot.org/) library, 
-  1. Test Suite level
-     * Run - `pabot --processes <count_of_parallels> tests/iOS/parallel/*.robot`
-     * Alternate method: `pabot --processes <count_of_parallels> <name_of_suites_to_run>`
-         <br/>Eg: `pabot --processes 2 Suite1.robot Suite2.robot`
-  2. Test case level
-     * Run - `pabot --testlevelsplit <file_name>` <br/>Eg:  `pabot --testlevelsplit Suite1.robot`
-  3. Run Test cases and Test suites together in parallel
-     * Run - `pabot --testlevelsplit --processes <count_of_parallels> *.robot`
-     <br/>**Note: If the process count exceeds the parallel thread limit, it will automatically get queued. No changes required in the scripts.**
+* To run single test, run 
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-single.yml" && browserstack-sdk robot tests/ios/SingleTestiOS.robot
+   ```
+* To run tests on multiple devices in parallel, run 
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-parallel-devices.yml" && browserstack-sdk robot tests/ios/SingleTestiOS.robot
+   ```
+* To run local tests, run 
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-local.yml" && browserstack-sdk robot tests/ios/LocalTestiOS.robot
+   ```
+* To run test suites in parallel
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-parallel.yml" && browserstack-sdk robot tests/ios/*.robot
+   ```
+* To run Test case level parallel tests we will be using the [Pabot](https://pabot.org/) library, 
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-parallel.yml" && browserstack-sdk pabot --testlevelsplit ./tests/ios/ParallelTestiOS.robot
+   ```
+* To run Test cases and Test suites together in parallel we will also be using the [Pabot](https://pabot.org/) library
+   ```
+   export BROWSERSTACK_CONFIG_FILE="tests/ios/config/browserstack-parallel.yml" && browserstack-sdk pabot --testlevelsplit ./tests/ios/*.robot
+   ```
 
 Understand how many parallel sessions you need by using our [Parallel Test Calculator](https://www.browserstack.com/automate/parallel-calculator?ref=github)
 
 ## Notes
-* This repository only works for Selenium 3 as of now. Desired Capabilities do not get honoured for Selenium 4. The open issue on SeleniumLibrary can be found [here](https://github.com/robotframework/SeleniumLibrary/issues/1774).
 * You can view your test results on the [BrowserStack Automate dashboard](https://www.browserstack.com/automate)
-* To test on a different set of browsers, check out our [platform configurator](https://www.browserstack.com/automate/java#setting-os-and-browser)
+* To configure the .yml file you can use the [SDK config generator](https://www.browserstack.com/docs/automate/selenium/sdk-config-generator)
 
 ## Additional Resources
 * [Documentation for writing Automate test scripts in Python](https://www.browserstack.com/automate/python)

@@ -1,0 +1,6 @@
+robotframework
+robotframework-appiumlibrary
+robotframework-pabot
+browserstack-sdk
+robotframework-seleniumlibrary
+Appium-Python-Client
